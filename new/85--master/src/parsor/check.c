@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:26:59 by dojannin          #+#    #+#             */
-/*   Updated: 2023/04/17 19:00:06 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:47:09 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	delim_quote(char *tp, char c, char delim)
 {
 	int	i;
 	int	flag;
-	int	stock;
+	// int	stock;
 
 	i = 0;
 	flag = 0;
-	stock = 0;
+	// stock = 0;
 	while (tp[i])
 	{
 		if (tp[i] == delim)
@@ -61,7 +61,7 @@ int	delim_quote(char *tp, char c, char delim)
 			if (flag == 1)
 				flag = 0;
 			flag = 1;
-			stock = i;
+			// stock = i;
 		}
 		if (tp[i] == c)
 		{

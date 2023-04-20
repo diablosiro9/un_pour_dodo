@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:20:25 by dojannin          #+#    #+#             */
-/*   Updated: 2023/04/12 15:24:30 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:49:20 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int	det_nb_hd()
+int	det_nb_hd(void)
 {
 	t_token *tmp;
-	int	flag = 0;
+	int		flag;
 
+	flag = 0;
 	tmp = g_data.token;
 	while (tmp)
 	{
@@ -86,14 +87,13 @@ char	**fill_hd_arg(char *path, char *name)
 	char	**res = NULL;
 	t_token	*tmp = NULL;
 	int		i = 0;
-	int		flag = 0;
 
 	tmp = g_data.token;
 	(void)path;
 	while (tmp && (tmp->t_type == 8 || tmp->t_type == 7))
 	{
-		if (tmp->t_type == 7)
-			flag = 1;
+		// if (tmp->t_type == 7)
+		// 	flag = 1;
 		i++;
 		tmp = tmp->next;
 	}
@@ -103,6 +103,7 @@ char	**fill_hd_arg(char *path, char *name)
 	res[0] = ft_strdup(name);
 	res[1] = ft_strdup("-");
 	res[2] = NULL;
+	// flag = 0;
 	return (res);
 }
 

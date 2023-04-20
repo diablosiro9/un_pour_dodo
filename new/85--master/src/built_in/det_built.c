@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   det_built.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:06 by dojannin          #+#    #+#             */
-/*   Updated: 2023/04/17 18:36:52 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:15:47 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	help_builtin()
 
 int	det_builtin()
 {
-	printf("g_data.tokeeeeeeeen->value = %s\n", g_data.token->value);
 	if (strcmp(g_data.token->value, "pwd") == 0 || strcmp(g_data.token->value, "/bin/pwd") == 0)
 	{
 		ft_pwd(1);

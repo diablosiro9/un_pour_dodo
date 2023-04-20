@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:15:59 by imac21            #+#    #+#             */
-/*   Updated: 2023/04/19 14:48:23 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:50:42 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,9 +237,7 @@ int	ft_export(int redir)
 	t_token		*tmp;
 	size_t			i;
 	char		*new_env;
-	char		*content;
 
-	content = g_data.cmd;
 	new_env = NULL;
 	i = 0;
 	tmp = g_data.token;

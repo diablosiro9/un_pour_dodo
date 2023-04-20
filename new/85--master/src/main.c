@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:32:59 by mla-rosa          #+#    #+#             */
-/*   Updated: 2023/04/19 13:21:31 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:46:39 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 
 int main(int ac, char **av, char **env)
 {
-	t_list	*history = NULL;
+	// t_list	*history = NULL;s
     t_list *list = NULL;
 	t_list	*res = NULL;
-	char	*tmp = NULL;
+	// char	*tmp = NULL;
 	struct sigaction sa;
     sa.sa_handler = sig_handler;
     sa.sa_flags = SA_RESTART;
@@ -57,7 +57,7 @@ int main(int ac, char **av, char **env)
 
 	(void)ac;
     (void)av;
-	history = ft_lstnew(NULL);
+	// history = ft_lstnew(NULL);
     g_data.env = get_env_do(env);
     g_data.export = get_env_do(env);
 	(void)res;
@@ -70,7 +70,7 @@ int main(int ac, char **av, char **env)
 		g_data.cmd = readline("minishell>");
 		if (g_data.cmd == NULL) 
             sig_quit(3);
-		tmp = g_data.cmd;
+		// tmp = g_data.cmd;
         // list = ft_lstnew(g_data.cmd);
 		add_history(g_data.cmd);
 		if (g_data.cmd != NULL && ft_strlen(g_data.cmd) > 0)

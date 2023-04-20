@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:04:10 by dojannin          #+#    #+#             */
-/*   Updated: 2023/04/19 13:22:22 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:53:24 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,109 +79,77 @@ void	destroyer(int start, int i)
 		}
 		compare++;
 	}
-	g_data.token = tmp;
+	if (tmp)
+		g_data.token = tmp;
+	else
+		g_data.token = NULL;
 }
 
 t_token	*terminator(void)
 {
 	t_token	*tmp;
-	char	*stock;
 	char	*res;
 	int		i;
-	int		flag;
 	int		start;
 	
 
 	i = 0;
 	start = 0;
-	flag = 0;
-	stock = NULL;
 	tmp = g_data.token;
 	res = NULL;
 	while (tmp)
 	{
-		stock = tmp->value;
-		if (ft_strlen(stock) > 1)
+		if (tmp->t_type == 4 || tmp->t_type == 5)
 		{
-			while (stock[i])
+			if (ft_strlen(tmp->value) == 3)
 			{
-				if (stock[i] == ' ')
-					return (NULL);
-				i++;
-			}
-			i = 0;
-			if (!tmp->next)
-				return (g_data.token);
-			tmp = tmp->next;
-			start++;
-			stock = tmp->value;
-		}
-		if (ft_strlen(stock) == 1 && tmp->value[0] == '-')
-		{
-			tmp = tmp->next;
-			i++;
-			start++;
-		}
-		if (ft_strlen(stock) == 1 && tmp->t_type == 1)
-		{
-			flag = 2;
-			if (tmp->next)
-				tmp = tmp->next;
-		}
-		stock = tmp->value;
-		if (ft_strlen(stock) == 1 && tmp->t_type != 10 && tmp->t_type != 0)
-		{
-			if (!tmp->next)
-				return (g_data.token);
-			if (tmp->value[0] == '-' && !tmp->next)
-				return (NULL);
-			if (!tmp->next && ft_strlen(tmp->value) == 1 && tmp->value[0] != '-')
-				i++;
-			while (ft_strlen(tmp->value) == 1 && tmp->value[0] != '-' && tmp)
-			{
-				i++;
-				if (tmp->next)
-					tmp = tmp->next;
-				else
-					break ;
-			}
-			res = malloc(sizeof(char) * (i + 1));
-			tmp = g_data.token;
-			while (tmp && ft_strlen(tmp->value) > 1)
-				tmp = tmp->next;
-			if (tmp->value[0] == '-')
-				tmp = tmp->next;
-			i = 0;
-			while (ft_strlen(tmp->value) == 1 && tmp->value[0] != '-' && tmp != NULL)
-			{
-				res[i] = tmp->value[0];
-				i++;
-				if (tmp->next == NULL)
+				if (start == 0)
+					start = i;
+				while (ft_strlen(tmp->value) == 3 && tmp->value[1] != '-' && tmp)
 				{
-					flag = 1;
-					break;
+					i++;
+					if (tmp->next)
+						tmp = tmp->next;
+					else
+						break ;
 				}
-				tmp = tmp->next;
-			}
-			res[i] = '\0';
-			destroyer(start, i + start);
-			if (start == 0)
-			{
-				ft_token_addf(&g_data.token, ft_token_new(WORD, res));
-				start = 1;
-			}
-			else if (ft_strlen(res) > 1)
+				res = malloc(sizeof(char) * (i + 1));
+				tmp = g_data.token;
+				while (tmp && (ft_strlen(tmp->value) != 3 || tmp->t_type != 4 || tmp->t_type != 5))
+				{
+					printf("tmp->value = %s\n", tmp->value);
+					tmp = tmp->next;
+				}
+				if (tmp)
+					if (tmp->value[0] == '-')
+						tmp = tmp->next;
+				i = 0;
+				tmp = g_data.token;
+				while (ft_strlen(tmp->value) == 3 && tmp->value[1] != '-' && tmp != NULL)
+				{
+					res[i] = tmp->value[1];
+					i++;
+					if (tmp->next == NULL)
+					{
+						break;
+					}
+					tmp = tmp->next;
+				}
+				res[i] = '\0';
+				if (start == 0)
+					destroyer(start, i);
+				printf("RESSSSS = %s\n", res);
+				printf("i = %d\n", start);
 				ft_token_add(&g_data.token, ft_token_new(WORD, res));
-			if (flag == 1)
-				return (g_data.token);
+				tmp = g_data.token;
+				break ;
+			}
 		}
 		if (tmp->next)
 			tmp = tmp->next;
-		else
-			return (g_data.token);
-		start++;
+		i++;
 	}
-	return (NULL);
+	return (g_data.token);
 }
 
 t_token	*reunificator()
@@ -279,8 +247,8 @@ t_list	*ft_lexer(char *str)
 	recuperator();
 	modificator();
 	afflist(list, "lexer");
-	// if (terminator() == NULL)
-	// 	return (NULL);
+	if (terminator() == NULL)
+		return (NULL);
 	// if (reunificator() == NULL)
 	// 	return (NULL);
 	free(tab);

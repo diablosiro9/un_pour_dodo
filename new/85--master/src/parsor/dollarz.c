@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollarz.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:23:09 by dojannin          #+#    #+#             */
-/*   Updated: 2023/04/18 13:11:02 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:47:22 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	*find_all_dollars(void)
 {
 	t_token	*tmp;
 	char	*cmd;
-	char	*stock;
+	// char	*stock;
 
 	tmp = g_data.token;
 	cmd = g_data.cmd;
-	stock = NULL;
+	// stock = NULL;
 	if (tmp)
 	{
 		while (tmp != NULL)

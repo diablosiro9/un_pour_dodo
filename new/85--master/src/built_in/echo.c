@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dojannin <dojannin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imac21 <imac21@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:21:13 by imac21            #+#    #+#             */
-/*   Updated: 2023/04/19 16:05:22 by dojannin         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:50:21 by imac21           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
-
 
 int	ft_isquote(int c)
 {
@@ -194,8 +193,6 @@ int	case_squote(char *cmd, t_token **tmp, size_t *i, int redir)
 	char	*stock = NULL;
 	// char	*rest = NULL;
 	// int		flag = 0;
-	int		stop = 0;
-	int		j = 0;
 	int		delim = ft_strlen((*tmp)->value) - 1;
 	
 	(void)cmd;
@@ -210,11 +207,9 @@ int	case_squote(char *cmd, t_token **tmp, size_t *i, int redir)
 				delim--;
 			stock = ft_strsub(stock, 1, delim + 1);
 		}
-		j = 0;
 		if (stock != NULL)
 		{
 			ft_putstr_fd(stock, redir);
-			stop = 1;
 			*i = *i + 1;
 		}
 	}
